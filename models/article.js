@@ -6,17 +6,20 @@ var articleSchema = new Schema({
   headline: String,
   summary: String,
   URL: String,
-  saved: false,
+  saved: {
+    type: Boolean,
+    default: false
+  },
   date: {
     type: Date,
     default: Date.now
   },
   comments: {
-    type: Schema.Types.ObjectId,
-    ref: "comment"
+    type: Schema.Types.Array,
+    ref: "comments"
   }
 });
 
-var Article = mongoose.model("Article", articleSchema)
+var article = mongoose.model("article", articleSchema)
 
-module.exports = Article;
+module.exports = article;

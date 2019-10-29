@@ -3,7 +3,7 @@ var scraper = require("../scripts/scraper");
 
 module.exports = function(app) {
   //scrape
-  app.get("/", function(req, res){
+  app.get("/scrape", function(req, res){
     return scraper().then(function(articles){
       return db.article.create(articles);
     }).then(function(articles){
@@ -36,7 +36,7 @@ module.exports = function(app) {
     })
   })
   app.put("/article/:id", function(req, res){
-    db.article.findByIdAndUpdate({_id: req.params.id}, {$set: req.body}, {new:true}).then(function(updatedArticle){
+    db.article.findByIdAndUpdate({_id: req.params.id}, {$set: req.body}, {new:true, useFindAndModify:false}).then(function(updatedArticle){
       res.json(updatedArticle);
     })
   })

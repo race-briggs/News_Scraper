@@ -18,6 +18,8 @@ function scrapeSite(){
         summary: $(this).find("p").text().trim()
       };
 
+      console.log(article.url);
+
       articles.push(article);
   })
   return articles;

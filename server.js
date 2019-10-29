@@ -7,13 +7,14 @@ var PORT = process.env.PORT || 3000;
 var app = express();
 
 app.use(express.json());
-app.use(express.urlencoded({extended: true}));
+app.use(express.urlencoded({extended: true, useNewUrlParser: true}));
 app.use(express.static('public'));
 
-app.engine("handlebars", exphbs({defaultLayout: "main"}));
+app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
 
-app.use(routes);
+require("./routes/apiRoutes")(app);
+require("./routes/htmlRoutes")(app);
 
 var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/mongoHeadlines";
 

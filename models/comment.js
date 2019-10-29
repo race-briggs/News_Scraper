@@ -3,9 +3,13 @@ var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
 
 var commentSchema = new Schema({
+  articleId: {
+    type: Schema.Types.ObjectId,
+    ref: "article"
+  },
   comment: [String]
 })
 
-var Comments = mongoose.model("Comment", commentSchema);
+var comments = mongoose.model("comments", commentSchema);
 
-module.exports = Comments;
+module.exports = comments;
