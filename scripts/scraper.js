@@ -3,7 +3,7 @@ var cheerio = require("cheerio");
 
 function scrapeSite(){
 
-  return axios.get("http://www.nytimes.com").then(function(respose){
+  return axios.get("http://www.nytimes.com").then(function(response){
     var $ = cheerio.load(response.data);
 
     var articles = [];

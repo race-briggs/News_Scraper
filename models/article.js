@@ -6,7 +6,15 @@ var articleSchema = new Schema({
   headline: String,
   summary: String,
   URL: String,
-  saved: false
+  saved: false,
+  date: {
+    type: Date,
+    default: Date.now
+  },
+  comments: {
+    type: Schema.Types.ObjectId,
+    ref: "comment"
+  }
 });
 
 var Article = mongoose.model("Article", articleSchema)
